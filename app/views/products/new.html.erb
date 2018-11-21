@@ -6,17 +6,15 @@
 
 <%= form_for (@product) do |f| %>
 
-  <%= f.text_field :name, placeholder: "Product Name" %>
-  <%= f.number_field :price, placeholder: "Price" %>
+<%= f.text_field :name, placeholder: "Product Name" %>
+<%= f.number_field :price, placeholder: "Price" %>
 
-  <%= check_box_tag(:Books) %>
-  <%= label_tag(:Books, "book") %>
 
-  <%= check_box_tag(:Toys) %>
-  <%= label_tag(:Toys, "toy") %>
+<% @categories.each do |category| %>
+  <%= check_box_tag(category.name) %>
+  <%= label_tag(category.name, "#{category.name}") %>
+ <% end %>
 
-  <%= check_box_tag(:Home) %>
-  <%= label_tag(:Home, "home") %>
 
 
   <%= f.submit "submit" %>

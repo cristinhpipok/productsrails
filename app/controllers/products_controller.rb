@@ -10,12 +10,9 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.save
 
-    cat = [
-           "Books",
-           "Toys",
-           "Home"
-
-    ]
+    cat = Category.all.map do |category|
+      category.name
+    end
 
     params.keys.each do |param|
       if cat.include?(param)
@@ -26,34 +23,26 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
-
  def edit
+   @categories = Category.all
    @product = Product.find(params[:id])
-
-
-
-
-
-   # product.categories.delete(Category.find_by(name: ""))
- end
+ # product.categories.delete(Category.find_by(name: ""))
+end
 
  def update
    @product = Product.find(params[:id])
-   @product.update(product_params)
+  @product.update(product_params)
 
-cat = [
-           "Books",
-           "Toys",
-           "Home"
+   cat = Category.all.map do |category|
+     category.name
+   end
+   @product.categories.delete_all
 
-    ]
-    @product.categories.delete_all
-
-    params.keys.each do |param|
-      if cat.include?(param)
-       @product.categories.push(Category.find_by(name: params))
-      end
-    end
+   params.keys.each do |param|
+     if cat.include?(param)
+      @product.categories.push(Category.find_by(name: param))
+     end
+   end
 
    redirect_to products_path
  end
