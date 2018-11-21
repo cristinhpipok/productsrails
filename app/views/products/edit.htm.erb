@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+<h1>Product</h1>
+
+<%= form_for (@product) do |f| %>
+
+  <%= f.text_field :name, placeholder: "Product Name" %>
+  <%= f.number_field :price, placeholder: "Price" %>
+
+  <%= check_box_tag(:Books) %>
+  <%= label_tag(:Books, "book") %>
+
+  <%= check_box_tag(:Toys) %>
+  <%= label_tag(:Toys, "toy") %>
+
+  <%= check_box_tag(:Home) %>
+  <%= label_tag(:Home, "home") %>
+
+
+  <%= f.submit "submit" %>
+
+<% end %>
+</div>
+ </div>
+</div>
